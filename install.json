@@ -1,0 +1,20 @@
+{
+  "requires": [{ "type": "conda", "name": "ffmpeg" }],
+  "run": [{
+    "method": "shell.run",
+    "params": { "message": "git clone https://github.com/cocktailpeanut/Whisper-WebUI app" }
+  }, {
+    "method": "shell.run",
+    "params": {
+      "path": "app",
+      "venv": "venv",
+      "message": [ "{{pip.install.torch}}", "pip install -r requirements.txt" ]
+    }
+  }, {
+    "method": "input",
+    "params": { "title": "Install Success", "description": "Go back to the dashboard and launch the app!" }
+  }, {
+    "method": "browser.open",
+    "params": { "uri": "/?selected=Whisper-WebUI" }
+  }]
+}
