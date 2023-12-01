@@ -8,7 +8,7 @@
     "params": {
       "path": "app",
       "venv": "venv",
-      "message": [ "{{pip.install.torch}}", "pip install -r requirements.txt" ]
+      "message": [ "{{pip.install.torch}}", "pip install -r requirements.txt", "pip install transformers" ]
     }
   }, {
     "method": "input",
