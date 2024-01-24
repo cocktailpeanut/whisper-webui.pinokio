@@ -23,13 +23,13 @@ module.exports = {
         }, {
           icon: 'fa-solid fa-terminal',
           text: "Terminal",
-          href: "start.js",
+          href: "start.json",
         }]
       } else {
         return [{
           icon: "fa-solid fa-power-off",
           text: "Start",
-          href: "start.js",
+          href: "start.json",
         }, {
           icon: "fa-solid fa-plug",
           text: "Update",
