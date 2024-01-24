@@ -1,5 +1,14 @@
 {
-  "requires": [{ "type": "conda", "name": "ffmpeg" }],
+  "cmds": {
+    "nvidia": "pip install torch torchvision torchaudio xformers --index-url https://download.pytorch.org/whl/cu118",
+    "amd": "pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.6",
+    "default": "pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cpu"
+  },
+  "requires": [{
+    "type": "conda",
+    "name": "ffmpeg",
+    "args": "-c conda-forge"
+  }],
   "run": [{
     "method": "shell.run",
     "params": { "message": "git clone https://github.com/cocktailpeanut/Whisper-WebUI app" }
@@ -8,7 +17,11 @@
     "params": {
       "path": "app",
       "venv": "venv",
-      "message": [ "{{pip.install.torch}}", "pip install -r requirements.txt", "pip install transformers" ]
+      "message": [
+        "{{(gpu === 'nvidia' ? self.cmds.nvidia : ((gpu === 'amd' && platform === 'linux') ? self.cmds.amd : self.cmds.default))}}",
+        "pip install -r requirements.txt",
+        "pip install transformers"
+      ]
     }
   }, {
     "method": "input",
