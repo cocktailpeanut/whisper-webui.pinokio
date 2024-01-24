@@ -15,16 +15,23 @@ module.exports = {
       let session = await kernel.require(__dirname, "session.json")
       let running = await kernel.running(__dirname, "start.json")
       if (running) {
-        return [{
-          icon: "fa-solid fa-rocket",
-          text: "Open UI",
-          href: (session && session.url ? session.url : "http://127.0.0.1:7860"),
-          target: "_blank"
-        }, {
-          icon: 'fa-solid fa-terminal',
-          text: "Terminal",
-          href: "start.json",
-        }]
+        if (session && session.url) {
+          return [{
+            icon: "fa-solid fa-rocket",
+            text: "Open UI",
+            href: session.url,
+          }, {
+            icon: 'fa-solid fa-terminal',
+            text: "Terminal",
+            href: "start.json",
+          }]
+        } else {
+          return [{
+            icon: 'fa-solid fa-terminal',
+            text: "Terminal",
+            href: "start.json",
+          }]
+        }
       } else {
         return [{
           icon: "fa-solid fa-power-off",
