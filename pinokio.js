@@ -17,7 +17,7 @@ module.exports = {
       let session = await kernel.require(__dirname, "session.json")
       let running = await kernel.running(__dirname, "start.json")
       if (running) {
-        let local = kernel.memory.local[path.resolve(__dirname, "start.js")]
+        let local = kernel.memory.local[path.resolve(__dirname, "start.json")]
         if (local && local.url) {
           return [{
             icon: "fa-solid fa-rocket",
