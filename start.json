@@ -9,17 +9,15 @@
       "on": [{ "event": "/http://[0-9.:]+/", "done": true }]
     }
   }, {
-    "method": "self.set",
+    "method": "local.set",
     "params": {
-      "session.json": {
-        "url": "{{input.event[0]}}"
-      }
+      "url": "{{input.event[0]}}"
     }
   }, {
-    "method": "browser.open",
+    "method": "proxy.start",
     "params": {
-      "uri": "{{self.session.url}}",
-      "target": "_blank"
+      "uri": "{{local.url}}",
+      "name": "Local Sharing"
     }
   }]
 }

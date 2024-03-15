@@ -1,4 +1,6 @@
+const path = require('path')
 module.exports = {
+  version: "1.3",
   title: "Whisper-WebUI",
   icon: "icon.png",
   description: "A Web UI for easy subtitle using whisper model (https://github.com/jhj0517/Whisper-WebUI)",
@@ -15,11 +17,12 @@ module.exports = {
       let session = await kernel.require(__dirname, "session.json")
       let running = await kernel.running(__dirname, "start.json")
       if (running) {
-        if (session && session.url) {
+        let local = kernel.memory.local[path.resolve(__dirname, "start.js")]
+        if (local && local.url) {
           return [{
             icon: "fa-solid fa-rocket",
             text: "Open UI",
-            href: session.url,
+            href: local.url,
           }, {
             icon: 'fa-solid fa-terminal',
             text: "Terminal",
