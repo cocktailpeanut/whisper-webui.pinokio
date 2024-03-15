@@ -6,12 +6,12 @@ module.exports = {
   description: "A Web UI for easy subtitle using whisper model (https://github.com/jhj0517/Whisper-WebUI)",
   menu: async (kernel) => {
     let installed = await kernel.exists(__dirname, "app", "venv")
-    let installing = await kernel.running(__dirname, "install.js")
+    let installing = await kernel.running(__dirname, "install.json")
     if (installing) {
       return [{
         icon: "fa-solid fa-plug",
         text: "Installing",
-        href: "install.js",
+        href: "install.json",
       }]
     } else if (installed) {
       let session = await kernel.require(__dirname, "session.json")
@@ -47,7 +47,7 @@ module.exports = {
         }, {
           icon: "fa-solid fa-plug",
           text: "Install",
-          href: "install.js",
+          href: "install.json",
         }, {
           icon: "fa-solid fa-broom",
           text: "Factory Reset",
