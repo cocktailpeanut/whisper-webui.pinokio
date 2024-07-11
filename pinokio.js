@@ -9,6 +9,7 @@ module.exports = {
     let installing = await kernel.running(__dirname, "install.json")
     if (installing) {
       return [{
+        default: true,
         icon: "fa-solid fa-plug",
         text: "Installing",
         href: "install.json",
@@ -20,6 +21,7 @@ module.exports = {
         let local = kernel.memory.local[path.resolve(__dirname, "start.json")]
         if (local && local.url) {
           return [{
+            default: true,
             icon: "fa-solid fa-rocket",
             text: "Open UI",
             href: local.url,
@@ -30,6 +32,7 @@ module.exports = {
           }]
         } else {
           return [{
+            default: true,
             icon: 'fa-solid fa-terminal',
             text: "Terminal",
             href: "start.json",
@@ -37,6 +40,7 @@ module.exports = {
         }
       } else {
         return [{
+          default: true,
           icon: "fa-solid fa-power-off",
           text: "Start",
           href: "start.json",
@@ -56,6 +60,7 @@ module.exports = {
       }
     } else {
       return [{
+        default: true,
         icon: "fa-solid fa-plug",
         text: "Install",
         href: "install.json",
